@@ -1,0 +1,13 @@
+// All Sass tools and helpers.
+@import "bourbon/_bourbon";
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,300);
+body {
+	background: whitesmoke;
+	font-family: 'Raleway', sans-serif;}
+
+.box {
+	background: white;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	padding: rem(15) rem(20);
+	margin-bottom: rem(20);
+}

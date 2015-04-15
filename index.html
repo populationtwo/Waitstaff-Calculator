@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Waitstaff Calculator in Angular</title>
+	<link rel="icon" type="image/ico" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.0/css/foundation.min.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="columns medium-12"><h1>Waitstaff Calculator</h1></div>
+	</div>
+	<div class="row">
+		<div class="columns medium-6">
+			<div class="box">
+
+			<h2>Meal Details</h2>
+
+			<p>Enter the meal details.</p>
+
+			<div class="row">
+				<div class="small-4 columns">
+					<label for="right-label" class="right inline">Base Meal Price</label>
+				</div>
+				<div class="small-8 columns">
+					<input type="text" id="right-label" placeholder="Inline Text Input">
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-4 columns">
+					<label for="right-label" class="right inline">Tax Rate</label>
+				</div>
+				<div class="small-8 columns">
+					<input type="text" id="right-label" placeholder="Inline Text Input">
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-4 columns">
+					<label for="right-label" class="right inline">Tip Percentage</label>
+				</div>
+				<div class="small-8 columns">
+					<input type="text" id="right-label" placeholder="Inline Text Input">
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-6 columns">
+<button>Submit</button>				</div>
+				<div class="small-6 columns">
+<button>Cancel</button>				</div>
+			</div>
+			</div>
+
+		</div>
+		<div class="columns medium-6">
+			<div class="box">
+				<h2>Customer Charges</h2>
+				<ul>
+					<li>Subtotal</li>
+					<li>Tip</li>
+					<li>Total</li>
+				</ul>
+			</div>
+			<div class="box">
+				<h2>My Earnings Info</h2>
+				<ul>
+					<li>Total Tips: $7.50</li>
+					<li>Meal count: 1</li>
+					<li> Average Tip per Meal: $7.50</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="columns medium-2">
+			<button>Reset</button>
+		</div>
+	</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/modernizr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+	$( document ).foundation();
+</script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
