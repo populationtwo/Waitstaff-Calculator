@@ -8,48 +8,56 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
-<div class="container">
+<div class="container" ng-app="myApp" ng-controller="calcController">
 	<div class="row">
 		<div class="columns medium-12"><h1>Waitstaff Calculator</h1></div>
 	</div>
 	<div class="row">
 		<div class="columns medium-6">
-			<div class="box">
+			<div class="box" >
 
-			<h2>Meal Details</h2>
+				<h2>Meal Details</h2>
 
-			<p>Enter the meal details.</p>
+				<p>Enter the meal details.</p>
 
-			<div class="row">
-				<div class="small-4 columns">
-					<label for="right-label" class="right inline">Base Meal Price</label>
+				<form name="waitstaffForm"  ng-submit="mealDetailSubmit()">
+
+				<div class="row">
+					<div class="small-4 columns">
+						<label for="meal_price" class="right inline">Base Meal Price</label>
+					</div>
+					<div class="small-8 columns">
+						<input type="number" id="meal_price" ng-model="mealData.mealPrice" placeholder="$" min="0.1" step=".1" required>
+					</div>
 				</div>
-				<div class="small-8 columns">
-					<input type="text" id="right-label" placeholder="Inline Text Input">
+				<div class="row">
+					<div class="small-4 columns">
+						<label for="tax_rate" class="right inline">Tax Rate</label>
+					</div>
+					<div class="small-8 columns">
+						<input type="number" id="tax_rate" ng-model="mealData.taxRate" placeholder="%" min="1" step=".1" required>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="small-4 columns">
-					<label for="right-label" class="right inline">Tax Rate</label>
+				<div class="row">
+					<div class="small-4 columns">
+						<label for="tip_percentage" class="right inline">Tip Percentage</label>
+					</div>
+					<div class="small-8 columns">
+						<input type="number" id="tip_percentage" ng-model="mealData.tipPercentage" step=".1" placeholder="%" required>
+					</div>
 				</div>
-				<div class="small-8 columns">
-					<input type="text" id="right-label" placeholder="Inline Text Input">
+				<div class="row">
+					<div class="small-12 columns">
+						<button class="small secondary" type="submit" value="Submit">Submit</button>
+						<button class="small secondary" type="button" value="Cancel">Cancel</button>
+					</div>
+
 				</div>
-			</div>
-			<div class="row">
-				<div class="small-4 columns">
-					<label for="right-label" class="right inline">Tip Percentage</label>
-				</div>
-				<div class="small-8 columns">
-					<input type="text" id="right-label" placeholder="Inline Text Input">
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-6 columns">
-<button>Submit</button>				</div>
-				<div class="small-6 columns">
-<button>Cancel</button>				</div>
-			</div>
+				</form>
+
+				<p>mealPrice {{ mealData.mealPrice }} </p>
+				<p>taxRate {{ mealData.taxRate }} </p>
+				<p>tipPercentage	{{ mealData.tipPercentage }} </p>
 			</div>
 
 		</div>
