@@ -20,7 +20,7 @@
 
 				<p>Enter the meal details.</p>
 
-				<form name="waitStaffForm" ng-submit="mealDetailSubmit()">
+				<form name="waitStaffForm" ng-submit="mealDetailSubmit(); formSubmitted=true;">
 
 					<div class="row">
 						<div class="small-4 columns">
@@ -49,12 +49,13 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<button class="small secondary" type="submit" value="Submit">Submit</button>
-							<button class="small secondary" type="button" value="Cancel">Cancel</button>
+							<button class="small secondary" type="button" value="Cancel" ng-click="cancelForm()">
+								Cancel
+							</button>
 						</div>
 
 					</div>
 				</form>
-
 
 
 			</div>
@@ -73,27 +74,25 @@
 				<h2>My Earnings Info</h2>
 				<ul>
 					<li>Tip Total: {{ earningData.tipTotal | currency }}</li>
-					<li>Meal count:</li>
-					<li>Average Tip per Meal:</li>
+					<li>Meal count: {{ earningData.mealCount }}</li>
+					<li>Average Tip per Meal: {{ earningData.tipMean | currency }}</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="columns medium-2">
-			<button>Reset</button>
+			<button class="small secondary" type="reset" value="Reset" ng-click="resetForm()">Reset</button>
 		</div>
 
 	</div>
+	<!--
+	Uncomment to debug
 	<div class="row">
-
-		<h4>Test:</h4>
-		<p>mealPrice {{ mealData.mealPrice }} </p>
-
-		<p>taxRate {{ mealData.taxRate }} </p>
-
-		<p>tipPercentage {{ mealData.tipPercentage }} </p>
-	</div>
+		{{mealData}}
+		{{chargeData}}
+		{{earningData}}
+	</div>-->
 </div>
 
 
