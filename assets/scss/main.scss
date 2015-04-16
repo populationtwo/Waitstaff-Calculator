@@ -1,13 +1,49 @@
 // All Sass tools and helpers.
 @import "bourbon/_bourbon";
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700,300);
+
 body {
 	background: whitesmoke;
-	font-family: 'Raleway', sans-serif;}
+	font-family: 'Raleway', sans-serif;
+}
 
+h1, h2, h3 {
+	font-family: 'Raleway', sans-serif;
+}
+.title {
+	text-align: center;
+	font-weight: 300;
+	margin: 60px 0;
+}
+.row {
+	max-width: rem(700);
+}
+.meal {
+	min-height: rem(432);
+}
 .box {
 	background: white;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 	padding: rem(15) rem(20);
 	margin-bottom: rem(20);
+	h2 {
+//		font-family: 'Raleway', sans-serif;
+		font-size: 22px;
+		font-weight: 700;
+		margin-bottom: rem(18);
+	}
+	ul {
+		margin-left: 0;
+			li {
+			list-style-type: none;
+				padding-bottom: rem(10);
+		}
+	}
+}
+.button-wrapper {
+	margin: 20px 0;
+}
+.result {
+	color: #0066bb;
+	font-weight: 700;
 }
