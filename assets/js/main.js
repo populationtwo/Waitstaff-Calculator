@@ -1,4 +1,18 @@
-angular.module( 'myApp', [] )
+angular.module( 'myApp', ['ngRoute'] )
+	.config( function ($routeProvider) {
+		$routeProvider.when( '/', {
+			templateUrl: './home.html',
+			controller : 'HomeCtrl'
+		} )
+			.when( '/meal', {
+				templateUrl: './meal.html',
+				controller : 'MealCtrl'
+			} )
+			.when( '/result', {
+				templateUrl: './result.html',
+				controller : 'ResultCtrl'
+			} )
+	} )
 	.controller( 'calcController', function ($scope) {
 
 		// set initial value
