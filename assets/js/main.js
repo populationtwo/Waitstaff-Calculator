@@ -1,18 +1,22 @@
 angular.module( 'myApp', ['ngRoute'] )
 	.config( function ($routeProvider) {
 		$routeProvider.when( '/', {
-			templateUrl: './home.html',
-			controller : 'HomeCtrl'
-		} )
-			.when( '/meal', {
-				templateUrl: './meal.html',
-				controller : 'MealCtrl'
-			} )
-			.when( '/result', {
-				templateUrl: './result.html',
-				controller : 'ResultCtrl'
-			} )
+			templateUrl: './home.html'
+		} ).when( '/meal', {
+			templateUrl: './meal.html',
+			controller : 'calcController'
+		} ).when( '/result', {
+			templateUrl: './result.html',
+			controller : 'resultCtrl'
+		} ).otherwise( {redirectTo: '/'} );
 	} )
+	.controller( 'mealCtrl', function () {
+
+	} )
+	.controller( 'resultCtrl', function () {
+
+	} )
+
 	.controller( 'calcController', function ($scope) {
 
 		// set initial value
@@ -59,7 +63,6 @@ angular.module( 'myApp', ['ngRoute'] )
 		// reset all values
 		$scope.resetForm = function () {
 			init();
-
 		}
 
 		// reset meal deatils and customer charges
