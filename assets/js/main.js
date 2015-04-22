@@ -1,4 +1,5 @@
 angular.module( 'myApp', ['ngRoute'] )
+	.value( 'earnings', [] )
 	.config( function ($routeProvider) {
 		$routeProvider.when( '/', {
 			templateUrl: './home.html'
@@ -10,56 +11,50 @@ angular.module( 'myApp', ['ngRoute'] )
 			controller : 'resultCtrl'
 		} ).otherwise( {redirectTo: '/'} );
 	} )
-	.controller( 'mealCtrl', function () {
-
-	} )
-	.controller( 'resultCtrl', function () {
-
-	} )
-
-	.controller( 'calcController', function ($scope) {
+	.controller( 'calcController', function ($scope, earnings) {
+		$scope.mealData = {};
+		$scope.subTotal = $scope.tip = $scope.total = null;
 
 		// set initial value
 		var init = function () {
 
-			$scope.mealData = {};
-			$scope.chargeData = {};
-			$scope.earningData = {};
-
-			$scope.earningData.tipTotal = 0;
-			$scope.earningData.mealCount = 0;
-			$scope.earningData.tipMean = 0;
-
-			$scope.chargeData.subTotal = 0;
-			$scope.chargeData.tip = 0;
-			$scope.chargeData.total = 0;
+			$scope.mealData.mealPrice = null;
+			$scope.mealData.tipPercentage = null;
+			$scope.mealData.taxRate = 7;
 
 			$scope.formSubmitted = false;
 
 		}
-		init();
+		//init();
 
 		// validate data
 		$scope.mealDetailSubmit = function () {
+
 			if ($scope.waitStaffForm.$valid) {
 				// do calculation
-				calculate();
+				calculate( $scope.mealData );
+				calculateEarning( $scope.mealData );
 			}
+
 		}
 
 		// calculate
-		var calculate = function () {
+		var calculate = function (mealData) {
 			//Customer charges info
-			$scope.chargeData.subTotal = $scope.mealData.mealPrice + ($scope.mealData.mealPrice * $scope.mealData.taxRate / 100 );
-			$scope.chargeData.tip = $scope.chargeData.subTotal * $scope.mealData.tipPercentage / 100;
-			$scope.chargeData.total = $scope.chargeData.tip + $scope.chargeData.subTotal;
-
-			//My Earnings info
-			$scope.earningData.tipTotal += $scope.chargeData.tip;
-			$scope.earningData.mealCount++
-			$scope.earningData.tipMean = $scope.earningData.tipTotal / $scope.earningData.mealCount;
+			$scope.subTotal = mealData.mealPrice + (mealData.mealPrice * mealData.taxRate / 100 );
+			$scope.tip = $scope.subTotal * mealData.tipPercentage / 100;
+			$scope.total = $scope.tip + $scope.subTotal;
 		}
 
+		var calculateEarning = function (mealData) {
+			//My Earnings info
+			earnings.push( {
+				'mealPrice'    : mealData.mealPrice,
+				'taxRate'      : mealData.taxRate,
+				'tipPercentage': mealData.tipPercentage
+			} )
+
+		}
 		// reset all values
 		$scope.resetForm = function () {
 			init();
@@ -67,10 +62,30 @@ angular.module( 'myApp', ['ngRoute'] )
 
 		// reset meal deatils and customer charges
 		$scope.cancelForm = function () {
-			$scope.chargeData.subTotal = 0;
-			$scope.chargeData.tip = 0;
-			$scope.chargeData.total = 0;
+			$scope.earningData.subTotal = 0;
+			$scope.earningData.tip = 0;
+			$scope.earningData.total = 0;
 			$scope.mealData = {};
 			$scope.formSubmitted = false;
 		}
+
+		init();
+	} )
+
+	.controller( 'resultCtrl', function ($scope, earnings) {
+		$scope.tipTotal = $scope.mealCount = $scope.tipMean = 0;
+
+		for (var meal in earnings) {
+			$scope.tipTotal += earnings[meal].mealPrice * earnings[meal].tipPercentage / 100;
+			$scope.mealCount += 1;
+			$scope.tipMean = $scope.tipTotal / $scope.mealCount;
+		}
+
+		$scope.resetForm = function () {
+			earnings.length = 0;
+			$scope.tipTotal = $scope.mealCount = $scope.tipMean = 0;
+
+		}
+
+
 	} )

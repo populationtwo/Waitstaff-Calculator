@@ -54,11 +54,18 @@
 		<div class="box">
 			<h2>Customer Charges</h2>
 			<ul>
-				<li>Subtotal <span class="result">{{ chargeData.subTotal | currency}}</span></li>
-				<li>Tip <span class="result">{{ chargeData.tip | currency}}</span></li>
-				<li>Total <span class="result">{{ chargeData.total | currency }}</span></li>
+				<li>Subtotal <span class="result">{{ subTotal | currency}}</span></li>
+				<li>Tip <span class="result">{{ tip | currency}}</span></li>
+				<li>Total <span class="result">{{ total | currency }}</span></li>
 			</ul>
 		</div>
 	</div>
 
+</div>
+
+
+<div class="row">
+	{{mealData}}
+	{{chargeData}}
+	{{earningData}}
 </div>

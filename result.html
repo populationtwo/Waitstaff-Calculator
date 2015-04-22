@@ -3,11 +3,19 @@
 		<div class="box">
 			<h2>My Earnings Info</h2>
 			<ul>
-				<li>Tip Total: <span class="result">{{ earningData.tipTotal | currency }}</span></li>
-				<li>Meal count: <span class="result">{{ earningData.mealCount }}</span></li>
-				<li>Average Tip per Meal: <span class="result">{{ earningData.tipMean | currency }}</span></li>
+				<li>Tip Total: <span class="result">{{ tipTotal | currency }}</span></li>
+				<li>Meal count: <span class="result">{{ mealCount }}</span></li>
+				<li>Average Tip per Meal: <span class="result">{{ tipMean | currency }}</span></li>
 			</ul>
 		</div>
 		<button class="small secondary" type="reset" value="Reset" ng-click="resetForm()">Reset</button>
 	</div>
+</div>
+
+
+
+<div class="row">
+	{{mealData}}
+	{{chargeData}}
+	{{earningData}}
 </div>
