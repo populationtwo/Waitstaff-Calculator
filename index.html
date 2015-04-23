@@ -10,15 +10,13 @@
 <body>
 <div class="container" ng-app="myApp" ng-controller="calcController">
 	<div class="row">
-		<div class="columns medium-12"><h1 class="title">Waitstaff Calculator</h1>
+		<div class="columns medium-12" ng-controller="navController"><h1 class="title">Waitstaff Calculator</h1>
 			<dl class="sub-nav">
-				<dd class="active"><a href="#/">Home</a></dd>
-				<dd><a href="#/meal">New Meal</a></dd>
-				<dd><a href="#/result">My Earnings</a></dd>
+				<dd ng-class="{active:isActive('/')}"><a href="#/">Home</a></dd>
+				<dd ng-class="{active:isActive('/meal')}"><a href="#/meal" >New Meal</a></dd>
+				<dd ng-class="{active:isActive('/result')}"><a href="#/result" >My Earnings</a></dd>
 			</dl>
 			<p>
-
-
 		</div>
 	</div>
 	<div ng-view></div>

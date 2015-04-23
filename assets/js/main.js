@@ -1,5 +1,9 @@
 angular.module( 'myApp', ['ngRoute'] )
-	.value( 'earnings', [] )
+
+	// Use value service to share data between controllers;
+	.value( 'earningData', [] )
+
+	// Define routes
 	.config( function ($routeProvider) {
 		$routeProvider.when( '/', {
 			templateUrl: './home.html'
@@ -11,35 +15,39 @@ angular.module( 'myApp', ['ngRoute'] )
 			controller : 'resultCtrl'
 		} ).otherwise( {redirectTo: '/'} );
 	} )
-	.controller( 'calcController', function ($scope, earnings) {
+	.controller('navController', function($scope, $location) {
+		$scope.isActive = function(route) {
+			return route === $location.path();
+		}
+	})
+	.controller( 'calcController', function ($scope, earningData) {
+
 		$scope.mealData = {};
-		$scope.subTotal = $scope.tip = $scope.total = null;
+		$scope.subTotal = null;
+		$scope.tip = null;
+		$scope.total = null;
 
 		// set initial value
 		var init = function () {
-
 			$scope.mealData.mealPrice = null;
 			$scope.mealData.tipPercentage = null;
-			$scope.mealData.taxRate = 7;
-
+			$scope.mealData.taxRate = 10;
 			$scope.formSubmitted = false;
-
-		}
-		//init();
+		};
+		init();
 
 		// validate data
 		$scope.mealDetailSubmit = function () {
-
 			if ($scope.waitStaffForm.$valid) {
 				// do calculation
-				calculate( $scope.mealData );
+				calculateMeal( $scope.mealData );
 				calculateEarning( $scope.mealData );
+				//$scope.cancelForm();
 			}
-
 		}
 
 		// calculate
-		var calculate = function (mealData) {
+		var calculateMeal = function (mealData) {
 			//Customer charges info
 			$scope.subTotal = mealData.mealPrice + (mealData.mealPrice * mealData.taxRate / 100 );
 			$scope.tip = $scope.subTotal * mealData.tipPercentage / 100;
@@ -48,44 +56,34 @@ angular.module( 'myApp', ['ngRoute'] )
 
 		var calculateEarning = function (mealData) {
 			//My Earnings info
-			earnings.push( {
+			earningData.push( {
 				'mealPrice'    : mealData.mealPrice,
 				'taxRate'      : mealData.taxRate,
 				'tipPercentage': mealData.tipPercentage
 			} )
-
 		}
-		// reset all values
-		$scope.resetForm = function () {
+
+		// reset meal details and customer charges
+		$scope.cancelForm = function () {
+			$scope.waitStaffForm.$setPristine();
 			init();
 		}
 
-		// reset meal deatils and customer charges
-		$scope.cancelForm = function () {
-			$scope.earningData.subTotal = 0;
-			$scope.earningData.tip = 0;
-			$scope.earningData.total = 0;
-			$scope.mealData = {};
-			$scope.formSubmitted = false;
-		}
-
-		init();
 	} )
 
-	.controller( 'resultCtrl', function ($scope, earnings) {
-		$scope.tipTotal = $scope.mealCount = $scope.tipMean = 0;
+	.controller( 'resultCtrl', function ($scope, earningData) {
+		$scope.tipTotal = 0;
+		$scope.mealCount = 0;
+		$scope.tipMean = 0;
 
-		for (var meal in earnings) {
-			$scope.tipTotal += earnings[meal].mealPrice * earnings[meal].tipPercentage / 100;
+		for (var meal in earningData) {
+			$scope.tipTotal += earningData[meal].mealPrice * earningData[meal].tipPercentage / 100;
 			$scope.mealCount += 1;
 			$scope.tipMean = $scope.tipTotal / $scope.mealCount;
 		}
 
 		$scope.resetForm = function () {
-			earnings.length = 0;
+			earningData.length = 0;
 			$scope.tipTotal = $scope.mealCount = $scope.tipMean = 0;
-
 		}
-
-
 	} )
