@@ -7,14 +7,8 @@ angular.module( 'myApp', ['ngRoute'] )
 			controller : 'calcController'
 		} ).when( '/result', {
 			templateUrl: './result.html',
-			controller : 'resultCtrl'
+			controller : 'calcController'
 		} ).otherwise( {redirectTo: '/'} );
-	} )
-	.controller( 'mealCtrl', function () {
-
-	} )
-	.controller( 'resultCtrl', function () {
-
 	} )
 
 	.controller( 'calcController', function ($scope) {
