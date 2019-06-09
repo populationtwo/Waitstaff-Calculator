@@ -1,0 +1,101 @@
+<div class="clr-row">
+	<div class="clr-col-6">
+		<div class="card">
+			<div class="card-header">
+				Enter the Meal Details
+			</div>
+			<div class="card-block">
+				<div class="card-text">
+					<form clrForm #mealDetailsForm="ngForm" (ngSubmit)="calculateCharge(mealDetailsForm.value)" autocomplete="off" novalidate>
+						<clr-input-container>
+							<label class="clr-col-12 clr-col-md-3" for="price">Base Meal Price</label>
+							<input class="clr-col-12 clr-col-md-9" clrInput type="number" (ngModel)="mealDetails.price" name="price" required />
+							<clr-control-error>Required</clr-control-error>
+						</clr-input-container>
+						<clr-input-container>
+							<label class="clr-col-12 clr-col-md-3" for="taxRate">Tax Rate: (%)</label>
+							<input class="clr-col-12 clr-col-md-9" clrInput type="number" (ngModel)="mealDetails.taxRate" name="taxRate" required />
+							<clr-control-error>Required</clr-control-error>
+
+						</clr-input-container>
+						<clr-input-container>
+							<label class="clr-col-12 clr-col-md-3" for="tipRate">Tip Percentage: (%)</label>
+							<input class="clr-col-12 clr-col-md-9" clrInput type="number" (ngModel)="mealDetails.tipRate" name="tipRate" required />
+							<clr-control-error>Required</clr-control-error>
+						</clr-input-container>
+						<br>
+						<button class="btn btn-success" [disabled]="mealDetailsForm.invalid">Submit</button>
+						<button class="btn btn-warning-outline" (click)="mealDetailsForm.reset()">Cancel</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="clr-col-3">
+		<div class="card">
+			<div class="card-header">
+				Costumer Charges
+			</div>
+			<div class="card-block">
+				<div class="card-text">
+					<table class="table table-noborder">
+
+						<tbody>
+						<tr>
+							<td class="left">Subtotal</td>
+							<td>{{subtotal | currency:'USD'}}</td>
+
+						</tr>
+						<tr>
+							<td class="left">Tip</td>
+							<td>{{tip | currency:'USD'}}</td>
+
+
+						</tr>
+
+						<tr>
+							<td class="left">Total</td>
+							<td>{{total | currency:'USD'}}</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="clr-col-3">
+		<div class="card">
+			<div class="card-header">
+				My Earnings Info
+			</div>
+			<div class="card-block">
+				<div class="card-text">
+					<table class="table table-noborder">
+
+						<tbody>
+						<tr>
+							<td class="left">Tip Total</td>
+							<td>0</td>
+
+						</tr>
+						<tr>
+							<td class="left">Meal count</td>
+							<td>0</td>
+
+						</tr>
+
+						<tr>
+							<td class="left">Average Tip Per Meal:</td>
+							<td>0</td>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
