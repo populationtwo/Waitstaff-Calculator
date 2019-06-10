@@ -25,7 +25,7 @@
 						</clr-input-container>
 						<br>
 						<button class="btn btn-success" [disabled]="mealDetailsForm.invalid">Submit</button>
-						<button class="btn btn-warning-outline" (click)="mealDetailsForm.reset()">Cancel</button>
+						<a class="btn btn-warning-outline" (click)="mealDetailsForm.reset()">Cancel</a>
 					</form>
 				</div>
 			</div>
@@ -77,19 +77,21 @@
 						<tbody>
 						<tr>
 							<td class="left">Tip Total</td>
-							<td>0</td>
-
+							<td>{{earningsTotal | currency:'USD'}}</td>
 						</tr>
 						<tr>
 							<td class="left">Meal count</td>
-							<td>0</td>
-
+							<td>{{mealCount}}</td>
 						</tr>
-
 						<tr>
 							<td class="left">Average Tip Per Meal:</td>
-							<td>0</td>
-
+							<td>{{averageTip | currency:'USD'}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<button class="btn btn-warning-outline" (click)="resetEarnings()">Reset</button>
+							</td>
 						</tr>
 						</tbody>
 					</table>
